@@ -1,0 +1,149 @@
+---
+layout: post
+title: "Accessing and Using an OsiriX Web Portal"
+date: 2013-03-16 16:10
+author: Howard Mann
+comments: false
+sidebar: false
+categories: 
+- web portal
+- anonymization
+---
+
+
+###Contents###
+
+* Login to the Web Portal 
+* After logging-in to the OsiriX Web Portal
+* Anonymizing and uploading cases to the OsiriX server from the Web Portal
+
+<!-- more -->
+
+___   
+<br />
+### Login to the Web Portal###
+
+The IP address for an OsiriX Web Portal typically has this format: `http://x.x.x.x:3333`. It's simply a matter of putting the address in a browser.
+
+___
+<br/>
+####Update: May 2014####
+
+I have now relocated my Mac mini server to a colocation facility. It is here: radchest.macminicolo.net
+
+___
+<br />
+This is a screenshot of my Teaching File's Web Portal page:
+
+{% img center /images/WebPortalPage.jpg 750 750 Web Portal Page %}
+
+Login with the username and password.
+
+___
+<br />
+### After logging-in to the OsiriX Web Portal ###
+
+
+####Options for viewing cases 
+
+Once you're logged-in, you'll see the following page:
+
+{% img center /images/WebPortalSearch.jpg 750 750 Web Portal Search %}
+
+You can search by using a Diagnosis Keyword(s), for example, `aortic`, for diagnoses that contain that word.  Try different keywords, preceded by an *asterisk*, the Wild Card character used in programming applications.  You can also put an *asterisk* after the keyword.
+
+You can also simply browse through the Study List of all the cases or the OsiriX Smart Albums that the Teaching File creator has chosen to create. 
+
+`Tip: Because you're using a browser, you can also use its Search Function "Command-F (Mac) or Control-F (Windows)" to search for cases on the web page using appropriate keywords.`
+
+After you login to the Web Portal and find a case you want to retrieve, there are three choices as shown in this graphic:
+
+{% img center /images/WebPortalRetrieval.jpg Web Portal Retrieval %}
+
+1. WADO retrieval directly to your OsiriX database. If you're using OsiriX, this is the best method.
+2.  Download a case as a Zip file. You can then view the case with any Dicom viewer.
+3.  Download the case and view it with the Weasis viewer.
+
+If you select to view the case with Weasis, the java-based Weasis Viewer will automatically be downloaded to your computer, started, and the case retrieved into it. (You have to permit java applications to be downloaded and run on your computer.) It's a great way to view the case if you don't have OsiriX. 
+
+___
+<br />
+### Anonymizing and uploading cases to the OsiriX server from the Web Portal 
+
+If your login is associated with Upload Permission, you'll be able to upload a Zip file of a DICOM case(s) :
+
+{% img center /images/Upload.jpg 750 650 Upload %}
+
+####Update: December 2015####
+
+If you want to send me a case, and do not have Upload Permission, please send it to me via e-mail. I'd appreciate it and will give you full credit! 
+
+___
+<br />
+	Important: Remember to anonymize the case before uploading it to the Server
+	
+If you have OsiriX, you can use its anonymization function to accomplish this. 
+
+Here is a minimum scheme:
+
+{% img center /images/Anon2.jpg 500 500 Anonymize %}
+
+ With all the DICOM tags I've added to this scheme most cases are anonymized such that all personal information is removed. But definitely not always. Scroll through the meta-data of a Series of a case to be sure that none is left. If any remains, use the manual method to remove it. (You can also use the following manual method to edit any particular field(s) in the DICOM Header. )
+
+___
+<br />
+**The Manual Method**
+
+OsiriX permits one to edit any particular field in the DICOM header. This is a three-step process as indicated below:
+
+1. Activate the editing function by clicking on `edit`.
+2. Double-click on an entry to edit it and hit return. Edit other items as necessary.
+3. Click `Apply` specifying the `Study` level so that all the Series of the Case are changed.
+
+{% img center /images/ManualEdit.jpg Manual Method %}
+
+___
+
+<br />
+**Using DicomAnonymizer to anonymize cases**
+
+If you do not use OsiriX to anonymize a case, a great application to do this is *Dicom Anonymizer*. 
+<br/>
+{% img center /images/DICOManonymizerWindow.png 500 500 Window %}
+<br/>
+
+Review my [guidance document][22] on this web site for details about getting and using it.
+
+[22]: http://chestradiologists.org/blog/2014/05/26/title/
+
+___
+<br />
+**Removing personal patient information embedded in an image**
+
+Sometimes, for example, with an ultrasound image series, PHI is embedded in the image and cannot be removed by editing the DICOM header. In this case, the relevant portion of the image has to be removed, the resultant image saved as a separate Series, and the original Series deleted.
+
+The process is as follows:
+
+1. Define the area to be *retained* with the `rectangular ROI tool`. In the image below, I'm using this technique to exclude extraneous markers from a bedside chest radiographic image. The same process may be used for an ultrasound or nuclear medicine series containing many images.
+2. Click on the Shutter Tool icon in the toolbar. If the icon is not there, right-click on the toolbar, choose `Customize Toolbar` and drag it there. 
+3. This image demonstrates what you see just before you invoke the Shutter Tool
+
+{% img center /images/ShutterTool.jpg 650 650 Shutter Tool %}
+
+Next steps...
+
+4. Now that everything outside the ROI has been removed, use the Zoom and Pan tools to resize and center the resultant image as necessary in the window.
+5. Hit `Command-E` to save this as a new Series (named as you choose) in the case.  For Image Format, specify `as displayed in 16-bit BW` before clicking OK. 
+6. Delete the original series.
+
+If you want to view an excellent video of this process applied to an ultrasound examination, do so right here (Credit: Dr. Mary Roddie, OsiriX U.K. User Group):
+
+{% youtube UdxO_LKrxpg %}
+
+___
+<br />
+If you have a single JPG image with embedded personal information that you want to import into an OsiriX case, use the Preview application that comes with every Mac to crop out the information (or blacken it) and then import it into the case with the OsiriX menu item: `Plugins...Database...JPEG to DICOM` utility, specifying the `Meta-data: from the selected study in Database window` option when doing so. 
+
+___
+
+

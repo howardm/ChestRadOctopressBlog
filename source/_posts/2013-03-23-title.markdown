@@ -1,0 +1,209 @@
+---
+layout: post
+title: "Preparing an OsiriX Teaching File Case"
+date: 2013-03-23 15:51
+publish: true
+comments: false
+sidebar: false
+author: Howard Mann
+categories: 
+- anonymization
+- sharing teaching cases
+---
+In this document I'll describe how to prepare a case for inclusion in an OsiriX-based Teaching File Server or sharing with colleagues. 
+
+I suggest you employ the following stepwise process:
+
+###Contents###
+
+* getting a DICOM case into OsiriX
+* selecting and merging Series for inclusion and anonymizing the case
+* cropping selected images to remove extraneous anatomy, objects and identifying information
+* specifing Key Images for the case
+* creating a report using Pages and converting it to a DICOM file
+* sending the case to a Teaching File server
+* exporting a case for sharing using a cloud-based server account
+
+<!-- more -->
+
+###Getting a DICOM case into OsiriX
+
+In general, this involves getting the case to your laptop OsiriX. If your PACS system  permits you to export a case in DICOM format with one click, the most efficient method is to ask your IT department to assign your laptop a static IP address, usually via so-called *dynamically assigned static IP addresssing.* Then, ask the IT folks to register your OsiriX laptop as a DICOM-node on the PACS administration module with that IP address, connect your laptop to the network via an ethernet cable, and export the case directly.
+
+Here is a screenshot of me sending a case to my laptop OsiriX directly from our Philips iSite PACS:
+
+{% img center /images/DICOMExport.jpg DICOMExport %}
+
+I always have my laptop connected by ethernet cable to the LAN at the PACS Workstation I'm working at, so I can do this during my time in the Reading Room. I'll merge the Series of the case as necessary, anonymize it, *check the meta-data again to verify that the anonymization of personal information is complete*, and finish the preparation of the case later. 
+
+Otherwise, export the case from your PACS to a USB thumbdrive and transfer it to your laptop by a simple drag-and-drop onto the OsiriX window. Choose `Import Files` when prompted. 
+
+___
+
+<br />
+###Selecting and Merging Series and Anonymizing the Case
+
+The first step here is to review the CT and MRI Series and delete all extraneous images, such as CT Scout Topograms, CT Dose Information displays and MRI localization Series, that need not be in a Teaching Case or that contain embedded personal identifying information.
+
+At this point, you can merge all the Series by selecting all of them, right-clicking and choosing `Merge Selected Studies`.
+
+Now, anonymize the case.  Here is a minimum scheme (You'll likely have to add additional Dicom fields containing PHI after you inspect the meta-data of a case):
+
+{% img center /images/Anon2.jpg 750 750 Anonymization Scheme %}
+
+___
+<br />
+ `Tip: When you use the "Merge" command in OsiriX to merge all the Series of a particular case before anonymizing it, the component Series will be split again when you DICOM-send or Retrieve it from the Server. This is annoying! Prevent this by putting the Case Number in the DICOM Tag "StudyInstanceUID", as indicated above in the graphic. `
+
+ With all the DICOM tags I've added to this scheme most cases are anonymized such that all personal information is removed. But not always. Scroll through the Metadata of a Series of a case to be sure that none is left. If any remains, use the manual method to remove it. (You can also use the following manual method to edit any particular field(s) in the DICOM Header (Metadata). )
+
+___
+<br />
+**The Manual Method**
+
+OsiriX permits one to edit any particular field in the DICOM header. This is a three-step process as indicated below:
+
+1. Activate the editing function by clicking on `edit`.
+2. Double-click on an entry to edit it and hit return. Edit other items as necessary.
+3. Click `Apply` specifying the `Study` level so that all the Series of the Case are changed.
+
+{% img center /images/ManualEdit.jpg Manual Method %}
+
+___
+<br />
+**Using DicomAnonymizer to anonymize cases**
+
+If you do not use OsiriX to anonymize a case, a great application to do this is *Dicom Anonymizer*. Apply this application to the folder containing the case *before* you import the case into OsiriX.  
+<br/>
+{% img center /images/DICOManonymizerWindow.png 500 500 Window %}
+<br/>
+
+Review my [guidance document][22] on this web site for details on its use.
+
+[22]: http://chestradiologists.org/blog/2014/05/26/title/
+
+
+___
+<br />
+**Removing personal patient information embedded in an image**
+
+Sometimes, for example, with an ultrasound image series, PHI is embedded in the image and cannot be removed by editing the DICOM header. In this case, the relevant portion of the image has to be removed, the resultant image saved as a separate Series, and the original Series deleted.
+
+The process is as follows:
+
+1. Define the area to be *retained* with the `rectangular ROI tool`. In the image below, I'm using this technique to exclude extraneous markers from a bedside chest radiographic image. The same process may be used for an ultrasound or nuclear medicine series containing many images.
+2. Click on the Shutter Tool icon in the toolbar. If the icon is not there, right-click on the toolbar, choose `Customize Toolbar` and drag it there. 
+3. This image demonstrates what you see just before you invoke the Shutter Tool
+
+{% img center /images/ShutterTool.jpg 600 600 Shutter Tool %}
+
+Next steps...
+
+4. Now that everything outside the ROI has been removed, use the Zoom and Pan tools to resize and center the resultant image as necessary in the window.
+5. Hit `Command-E` to save this as a new Series (named as you choose) in the case.  For Image Format, specify `as displayed in 16-bit BW` before clicking OK. 
+6. Delete the original series.
+
+If you want to view an excellent video of this process applied to an ultrasound examination, do so right here (Credit: Dr. Mary Roddie, OsiriX U.K. User Group):
+
+{% youtube UdxO_LKrxpg %}
+
+___
+<br />
+If you have a single JPG image with embedded personal information that you want to import into an OsiriX case, use the Preview application that comes with every Mac to crop out the information (or blacken it) and then import it into the case with the OsiriX menu item: `Plugins...Database...JPEG to DICOM` utility, specifying the `Meta-data: from the selected study in Database window` option when doing so. 
+
+___
+<br />
+
+###Cropping Images
+
+This is generally pertinent to chest radiographs and is the same process described just above.
+
+These images are before and after the use of the Shutter Tool:
+
+{% img center /images/BeforeCXR.jpg 450 650%}  
+
+{% img center /images/AfterCXR.jpg 450 600 %} 
+
+Extraneous annotations are easily removed this way.
+
+___
+<br />
+###Specifying Key Images
+
+This is useful in two ways: i.) The key images may easily be inserted into a report using the Reporter plugin, and ii.) These will be displayed separately in the Web Portal as shown below, facilitating preview of a case:
+
+{% img center /images/KeyImages.jpg 775 775 Key Images %}
+
+___
+<br />
+
+###Creating a Report using Pages and converting it to a DICOM -PDF
+
+The report functionality of OsiriX can be used to provide a summary of the case, within which you provide clinical information about the patient, a chronology of the patients's clinical course, key images, a description of the key imaging findings, and other images, such as pathology slides. Because it's a conventional Pages document, anything can be included. After you have created it, right-click on the case and choose `Convert Report to DICOM pdf.` Then you don't need to save the Pages file. 
+
+Do the following:
+
+1. Specify Pages for Reports at the bottom of OsiriX Preferences: Database
+2. Navigate to: /Users/[yourname]/Documents/OsiriX Data/PAGES TEMPLATES and modify the OsiriX Basic Report.template as you wish, and then change the names of the other templates there to something else, so this template will be used as a default. 
+3. Invoke the Report as you create a case, fill in the templated fields as necessary, and then add content. 
+
+My simple Template looks like this:
+
+{% img center /images/ReportTemplate.jpg Report 500 500 template %}
+ 
+ <br />
+___
+<br />
+###Sending a case to a networked Teaching File Server
+
+Teaching File servers in your network appear in the `Sources` section of the `Albums & Sources` sidebar in OsiriX.
+
+To DICOM-send a case to any of them, just drag-and-drop a case on it as follows:
+
+{% img center /images/DragDrop.jpg DragDrop %}
+
+___
+<br />
+###Exporting a case for sharing using a cloud-based server account
+
+Members of our group typically share cases with other members using their individual DropBox ( or similar cloud-based accounts, such as Google Drive or Box) accounts. 
+
+Do so as follows:
+
+1. Create and label a new folder on your desktop.
+2. Right-click on a case (or select several cases) and choose `Export to DICOM File(s)`
+3. Navigate to and select the folder you created on your Desktop and specify the options shown here:
+
+[20]: http://www.dropbox.com/home
+
+{% img center /images/ExportCases.jpg 500 Export cases %}
+
+Now drop the folder into your Dropbox and email them a link to download it once it has been uploaded to the Dropbox server. 
+
+{% img center /images/DropBoxShare.jpg 500 500 Dropbox Sharing title %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     
+
+                                               
+
+ 
+
+
+
+

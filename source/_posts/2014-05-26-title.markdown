@@ -1,0 +1,75 @@
+---
+layout: post
+title: "Using DICOManonymizer to Anonymize a Case for a Teaching File" 
+date: 2014-05-26 19:56
+publish: true
+comments: false
+sidebar: false
+author: Howard Mann
+categories:
+- anonymization
+
+---
+
+Simplifying the process of anonymizing a case and labelling it with a diagnosis, keywords, and other attributes is now possible with the use of a freely available application: [DICOM Anonymizer] [1]. The creator of that application, Wouter Veldhuis, has graciously made a customized version of the application available. This guidance document will describe how to use it. It is very easy and quick!
+
+[1]: http://doradiology.com/DICOManonymizer
+
+<!-- more -->
+___
+<br/>
+
+###Obtaining and installing the application###
+
+Download a customized version of the application [here] [2].
+
+[2]: http://chestradiologists.org/DICOManonymizer.app.zip
+
+Unzip the file, and place the application in your Applications folder. If, when trying to open it for the first time, you get a warning message about installing an application from an unknown developer, do not be concerned. Go to System Preferences: Security & Privacy. Under the General Tab, choose to allow the application to be opened. You will have to do this once only. 
+
+When you open the application, it looks like this:
+
+{% img center /images/DICOManonymizerWindow.png 500 500 Window %}
+
+___
+<br/>
+
+###The process for anonymizing and labelling the case###
+
+This involves several simple steps:
+
+1. Place the folder containing your non-anonymized case on the desktop
+2. In the Application Window, fill in the boxes for: Diagnosis; Case Number (if applicable); Keywords to facilitate searching for the case; and your initials as Contributor of the case. Click the box: `Replace source data with anonymized data`
+3. Drag-and-drop the folder on the Application Window and confirm that you wish to overwrite the source data in the Dicom Header. Let the application complete the process, which takes very little time.
+4. Drag-and-drop the folder on the OsiriX Local Database window and import the files.
+5. Open the meta-data for the case, scroll down the window all the way to the bottom, and confirm that all Private Information has successfully been removed. If any remains, use the edit function in the meta-data window to manually remove it. This should infrequently be necessary.
+
+If you find that the application does not remove Private Information in a particular Dicom field(s) and this happens frequently, you can deal with this by editing a particular file, as follows:
+
+Go to the application in your Applications Folder, and right-click on it. Choose `Show Package Contents`. Navigate to the `Resources Folder` and use TextEdit to open the file therein called `AnonymizationConfiguration.txt`
+
+The entries look like this:
+
+{% img center /images/AnonConfigTxt.jpg 500 500 AnonConfigTxt %}
+
+
+<br/>
+
+Using the same format for the anonymized tags, add the tag(s) concerned to it. Let me know if this happens frequently so that I can also add an edited file to the application I distribute to colleagues. 
+
+<br/>
+
+Thanks!
+
+
+
+
+
+
+
+
+
+
+
+
+
