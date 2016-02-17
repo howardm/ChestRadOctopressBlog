@@ -1,0 +1,98 @@
+// This File is imported last, and will override other styles in the cascade
+// Add styles here to make changes without digging in too much
+
+
+// Fonts
+// use my preferred fonts
+//.heading { font-family: "Caudex", "Georgia", "Helvetica Neue", Arial, sans-serif; }
+//.sans    { font-family: "Muli", "Helvetica Neue", Arial, sans-serif; }
+//.serif   { font-family: "Caudex", Georgia, Times, "Times New Roman", serif; }
+
+
+body {
+  max-width: 1100px;
+}
+//time {
+  //font-size: 14px;
+//}
+//h1 {
+  //font-size: 1.8em;
+//}
+//section {
+  //> h1 {
+    //font-size: 1.5em;
+  //}
+//}
+//codeblock {
+    //font-size: 1.4em;
+//}
+
+body > header h1{
+    font-size: 1.5em;
+}
+
+body > header h2{
+    font-size: 1.0em;
+}
+
+#content .blog-index article h1 {
+    font-size: 1.3em;
+}
+
+h1 { font-size: 1.4em; }
+
+body>nav{
+margin: 10px 0 10px 0;
+}
+
+body > nav {
+      -moz-border-radius: 0.4em;
+      -webkit-border-radius: 0.4em;
+      border-radius:0.4em;
+      margin-bottom: 2em;
+    }
+
+#main{
+-moz-border-radius: 8px;
+-webkit-border-radius: 8px;
+border-radius: 8px;
+}
+
+aside.sidebar{
+-moz-border-radius:  0 8px 0 0;
+-webkit-border-radius: 0 8px 0 0;
+border-radius: 0 8px 0 0;
+
+}
+
+* + table {
+  border-style:solid;
+  border-width:3px;
+  border-color:#e7e3e7;
+}
+ 
+* + table th, * + table td {
+  border-style:dashed;
+  border-width:2px;
+  border-color:#e7e3e7;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+ 
+* + table th {
+  border-style:solid;
+  font-weight:bold;
+  background: url("/images/noise.png?1330434582") repeat scroll left top #F7F3F7;
+}
+ 
+* + table th[align="left"], * + table td[align="left"] {
+  text-align:left;
+}
+ 
+* + table th[align="right"], * + table td[align="right"] {
+  text-align:right;
+}
+ 
+* + table th[align="center"], * + table td[align="center"] {
+  text-align:center;
+}
