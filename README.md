@@ -1,5 +1,7 @@
 This repository contains relevant source (folder) and other files for the [Chest Radiologists Collaborative](http://chestradiologists.org) web site.
 
+Update: February 24, 2016. The site is now powered by [Hugo] (http://http://gohugo.io)
+
 It is built with [Octopress 2.0] (http://octopress.org).
 
 (The proper designation for the configuration YML file in Octopress is "_config.yml")
