@@ -1,4 +1,4 @@
-Update: February 24, 2016. The site is now powered by [Hugo] (http://http://gohugo.io)
+Update: February 24, 2016. The site is now powered by [Hugo] (http://gohugo.io).
 
 This repository contains relevant source (folder) and other files for the [Chest Radiologists Collaborative](http://chestradiologists.org) web site.
 
