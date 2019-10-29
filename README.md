@@ -1,8 +1,8 @@
-Update: February 24, 2016. The site is now powered by [Hugo] (http://gohugo.io).
+Update: February 24, 2016. The site is now powered by Hugo (http://gohugo.io).
 
 This repository contains relevant source (folder) and other files for the [Chest Radiologists Collaborative](http://chestradiologists.org) web site.
 
-It is built with [Octopress 2.0] (http://octopress.org).
+It is built with Octopress 2.0 (http://octopress.org).
 
 View a screenshot of the site's main page (CRCWebsite.jpg) above.
 
